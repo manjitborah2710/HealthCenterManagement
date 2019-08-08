@@ -1,0 +1,11 @@
+
+            <ul class="statuss" style="list-style: none">
+                    {% for status in statuss %}
+                        <li>
+                            <button type="hidden" id="pid" value="{{ status.person_id }}" onclick="getPerson('{{ status.person_id }}')" style="background:transparent;border:none">{{ status.person_id }}, {{ status.name }}</button>
+                        </li>
+                    {% endfor %}    
+            </ul>
+   
+
+    

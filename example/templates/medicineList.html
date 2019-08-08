@@ -1,0 +1,5 @@
+<ul id="myMed" style="">
+    {% for name in med %}
+        <li style="display:none;"><a href='javascript:;' onclick='getMedName("{{ name }}")'>{{ name }}</a></li>
+    {% endfor %}
+</ul>

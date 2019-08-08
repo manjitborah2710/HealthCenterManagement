@@ -1,0 +1,73 @@
+{% extends 'layout.html' %}
+
+
+{% block header %}
+  <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark" style="float:right;">
+  <span class="mdl-layout__tab">Hi, Dr. BANIBRATA CHAKRABORTY</span>
+
+
+  {% if user.is_authenticated %}
+    <button onclick="location='http://192.168.44.240:8000/admin/'" class="mdl-button mdl-js-button  mdl-js-ripple-effect mdl-button--raised mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
+     <span>Dashboard</span>
+    </button>
+  {% else %}
+    <button onclick="location='http://192.168.44.240:8000/admin/doctor'" class="mdl-button mdl-js-button  mdl-js-ripple-effect mdl-button--raised mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
+      <span>Sign In</span>
+    </button>
+  {% endif %}
+
+  </div>
+  </header>
+{% endblock %}
+{% block content %}
+      <main class="mdl-layout__content" style="width:100%">
+        <div class="mdl-grid is-active">
+            <div class="demo-separator mdl-cell"></div>
+            <div class="demo-cards mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col">
+              <section class="mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+                <div class="mdl-card mdl-cell mdl-cell--12-col mdl-shadow--4dp mdl-color-text--grey-700">
+                  <div class="mdl-card__supporting-text">
+                    <h4>New Prescription
+                      <button class="mdl-button mdl-js-button  mdl-js-ripple-effect mdl-button--fab mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add1" data-upgraded=",MaterialButton,MaterialRipple" style="margin-right: 42px">
+                               <i class="material-icons">check</i></button>
+                    </h4>
+                  </div>
+                  <div class="mdl-card mdl-cell mdl-cell--12-col mdl-shadow--4dp mdl-color-text--grey-700">
+                    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                        <thead>
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric">Material</th>
+                            <th>Quantity</th>
+                            <th>Unit price</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
+                            <td>25</td>
+                            <td>$2.90</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Plywood (Birch)</td>
+                            <td>50</td>
+                            <td>$1.25</td>
+                        </tr>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Laminate (Gold on Blue)</td>
+                            <td>10</td>
+                            <td>$2.35</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                  </div>
+                </div> 
+              </section>
+            </div>
+        </div>
+      
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+        
+        {% endblock %}      

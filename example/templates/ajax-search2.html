@@ -1,0 +1,10 @@
+<ul id="search-results">
+    <ul class="statuss" style="list-style: none">
+            {% for status in statuss %}
+                <li>
+                    <button type="hidden" id="mid" value="{{ status.medicine_name }}" onclick="getMedDetail('{{ status.medicine_name }}')" style="background:transparent;border:none">{{ status.medicine_name }}</button>
+                </li>
+            {% endfor %}    
+    </ul>
+</ul>
+

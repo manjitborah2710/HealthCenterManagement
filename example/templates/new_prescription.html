@@ -1,0 +1,364 @@
+{% extends 'layout.html' %}
+
+
+{% block header %}
+  <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark" style="float:right;">
+  <span class="mdl-layout__tab">Hi, Dr. BANIBRATA CHAKRABORTY</span>
+
+
+  {% if user.is_authenticated %}
+    <button onclick="location='http://192.168.45.75:8000/admin/'" class="mdl-button mdl-js-button  mdl-js-ripple-effect mdl-button--raised mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
+     <span>Dashboard</span>
+    </button>
+  {% else %}
+    <button onclick="location='http://192.168.45.75:8000/admin/doctor'" class="mdl-button mdl-js-button  mdl-js-ripple-effect mdl-button--raised mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
+      <span>Sign In</span>
+    </button>
+  {% endif %}
+
+  </div>
+  </header>
+{% endblock %}
+{% block content %}
+      <main class="mdl-layout__content" style="width:100%">
+        <div class="mdl-grid is-active">
+            <div class="demo-separator mdl-cell--2-col"></div>
+            <div class="demo-cards mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--6-col">
+              <section class="mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+                <div class="mdl-card mdl-cell mdl-cell--12-col mdl-shadow--4dp mdl-color-text--grey-700">
+                  <div class="mdl-card__supporting-text">
+                    <h4>New Prescription
+                      <button class="mdl-button mdl-js-button  mdl-js-ripple-effect mdl-button--fab mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add1" onclick="saveData()" data-upgraded=",MaterialButton,MaterialRipple" style="margin-right: 42px">
+                               <i class="material-icons">check</i></button>
+                    </h4>
+                  </div>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 70%; margin: auto" onclick="enableReSearch()">
+                    <input class="mdl-textfield__input" type="text" name="search" id="txtSearch">
+                    <label class="mdl-textfield__label" for="fname">Search Patient </label>
+                    <!-- <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+                      <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1" checked>
+                      <span class="mdl-radio__label">Search by ID</span>
+                    </label>
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                      <input type="radio" id="option-2" class="mdl-radio__button" name="options" value="2">
+                      <span class="mdl-radio__label">Search by Name</span>
+                    </label> -->
+                    <ul id="search-results">
+                    </ul>
+                  </div>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 70%; margin: auto">
+                    <textarea class="mdl-textfield__input" type="text" rows="3" id="complaint"></textarea>
+                    <label class="mdl-textfield__label" for="schools">Complaints</label>
+                  </div>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 70%; margin: auto">
+                    <textarea class="mdl-textfield__input" type="text" rows="3" id="diagnosis"></textarea>
+                    <label class="mdl-textfield__label" for="schools">Diagnosis</label>
+                  </div>
+                  <div style="width: 70%; margin: auto"><label >Recommended Tests</label>
+                    <!-- <button class="mdl-button mdl-js-button  mdl-js-ripple-effect mdl-button--fab mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="addTest" data-upgraded=",MaterialButton,MaterialRipple" style="margin-right: 42px">
+                      <i class="material-icons">add</i>
+                    </button> -->
+                    <input type='button' value='Add Test' id='addTestButton' style="float:right;">
+                    <input type='button' value='Remove Test' id='removeTestButton' style="float:right;">
+                  </div>
+                  
+          
+                  <div id='TextBoxesTestGroup' style="width: 70%; margin: auto">
+                    <br>
+                    
+                    <!-- <input type='button' value='Get TextBox Value' id='getTestButtonValue'> -->
+                    <div id="TextBoxTestDiv1">
+                      <label>Test #1 : </label><input type='text' id='test1' >
+                    </div>
+                  </div>                  
+                  <br>
+                  <div style="width: 70%; margin: auto">
+                  <label style="width: 70%; margin: auto">Recommended Medicines</label>
+                  <input type='button' value='Add Medicine' id='addMedsButton' style="float:right;">
+                  
+                  </div>
+                  
+                  <div id='TextBoxesMedsGroup' style="width: 70%; margin: auto" class="medGroup">
+                  <br>                    
+                    <!-- <input type='button' value='Get TextBox Value' id='getMedsButtonValue'> -->
+                    <div id="TextBoxMedsDiv1">
+                      <label>Medicine #1 : </label><input type='text' id='meds1' name="meds1" class="meds" onkeyup="searchMedicine(1)" value="">
+                      <label style="">&nbsp;&nbsp;&nbsp;Quantity:</label>
+                      <input type="number" id='quantitytextboxmeds1' style="width:35px;" min="1">
+                      <input type='button' value='X' onclick="removeDiv(1)" id='removeMedsButton1' style="float:right;color:red;background:white;">
+                    </div>
+                  </div>
+                  <div id="medicine" style="padding-left:175px"></div>
+                  <!-- <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 70%; margin: auto">
+                    <input class="mdl-textfield__input" type="text" id="fname">
+                    <label class="mdl-textfield__label" for="fname">First name</label>
+                  </div>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 70%; margin: auto">
+                    <input class="mdl-textfield__input" type="text" id="fname">
+                    <label class="mdl-textfield__label" for="fname">First name</label>
+                  </div> -->
+                  <br>
+                  <br>
+                </div> 
+              </section>
+            </div>
+            <div class="demo-cards mdl-cell mdl-cell--2-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
+              <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+                <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
+                  <h2 class="mdl-card__title-text" id="name"></h2>
+                </div>
+                <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                  Patient type: <span id="category"></span><br> Patient ID: <span id="pid2"></span>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                  <button type="button" id="modalbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect" data-upgraded=",MaterialButton,MaterialRipple">Patient History<span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+                </div>
+              </div>
+              <div class="demo-separator mdl-cell--6-col"></div>
+            </div>
+            <div class="demo-separator mdl-cell--2-col"></div>
+        </div>
+
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <p>Some text in the Modal..</p>
+            </div>
+          
+          </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+        <script type="text/javascript">
+            var counter = 2;
+            var counter2 = 2;
+            $(function() {
+              $('#txtSearch').keyup(function() {
+                console.log($('#txtSearch').val());
+                $.ajax({
+                  type: "GET",
+                  url: "/getPatient/",
+                  data: {
+                  'search_text' : $('#txtSearch').val(),
+                  'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
+                  },
+                  success: searchSuccess,
+                  dataType: 'html'
+                });
+              });
+            });
+
+            function searchSuccess(data, textStatus, jqXHR)
+            {
+              $('#search-results').html(data);
+              // console.log(data);
+            }
+            function enableReSearch(){
+              $('#search-results').show();
+            }
+          var setcnt = 0;
+          function searchMedicine(cnt){
+            setcnt = cnt;
+            $('#myMed').attr("style", "display:block;");
+            var input, filter, ul, li, a, i, txtValue;
+            input = document.getElementById("meds"+cnt);
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myMed");
+            li = ul.getElementsByTagName("li");
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "block";
+                    // temp = ',' + cnt + ');';
+                    // $(a).attr("onclick", $(a).attr("onclick") + temp);
+                    // console.log("Here");
+                }else{
+                    li[i].style.display = "none";
+                    // console.log("There");
+                }
+            }
+          }
+
+          function getMedName(name){
+            console.log(setcnt);
+            console.log(name);
+            $("#meds" + setcnt).val(name);
+            $('#myMed').attr("style", "display:none;");
+          }
+          function getPerson(pid){
+            console.log(pid);
+            $.ajax({
+                  type: "GET",
+                  url: "/getPatientDetail/",
+                  data: {
+                  'pid' : pid,
+                  'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
+                  },
+                  dataType: 'json',
+                  success: function(data){
+                    // console.log(data);
+                    $('#search-results').hide();
+                    $('#name').html(data.person.name);
+                    $('#txtSearch').val(data.person.name);
+                    $('#category').html(data.person.category);
+                    $('#pid2').html(data.person.person_id);
+                  }
+                });
+          }
+          
+          $(document).ready(function(){
+            // Tests dynamic fields
+              // var medList = [];
+              $.ajax({
+                type: "GET",
+                url: "/getMedicinesPrescription/",
+                data: {
+                'search_text' : "med",
+                'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
+                },
+                success: function(data){
+                  $('#medicine').html(data);
+                },
+                dataType: 'html'
+              });
+
+            $("#addTestButton").click(function() {
+              if(counter>10){
+                alert("Only 10 textboxes allow");
+                return false;
+              }   
+              var newTextBoxDiv = $(document.createElement('div'))
+                  .attr("id", 'TextBoxTestDiv' + counter);           
+              newTextBoxDiv.after().html('<label>Test #'+ counter + ' : </label>' +
+                    '<input type="text" name="test' + counter + 
+                    '" id="test' + counter + '" value="" > ');   
+              newTextBoxDiv.appendTo("#TextBoxesTestGroup");
+              counter++;
+            });
+
+
+            
+            $("#removeTestButton").click(function () {
+              if(counter==1){
+                      alert("No more textbox to remove");
+                      return false;
+                  }
+              counter--;
+                  
+                    $("#TextBoxTestDiv" + counter).remove();
+            });
+              
+            $("#getTestButtonValue").click(function () {
+              var msg = '';
+              for(i=1; i<counter; i++){
+                  msg += "\n Test #" + i + " : " + $('#test' + i).val();
+              }
+                    alert(msg);
+            });
+            // Medicine dynamic fields
+            
+            $("#addMedsButton").click(function () {
+              if(counter2>10){
+                        alert("Only 10 medicines allowed");
+                        return false;
+              }   
+              var newTextBoxDiv = $(document.createElement('div'))
+                  .attr("id", 'TextBoxMedsDiv' + counter2);           
+              newTextBoxDiv.after().html('<label>Medicine #'+ counter2 + ' : </label>' +
+                    '<input type="text" class="meds" name="meds' + counter2 + 
+                    '" id="meds' + counter2 + '" onkeyup="searchMedicine(' + counter2 + ')" value=""> <label>&nbsp;&nbsp;&nbsp;Quantity :</label><input type="number" id="quantitytextboxmeds' + counter2 + '" style="width:35px;" min="1"> <input type="button" value="X" onclick="removeDiv(' + counter2 + ')" id="removeMedsButton' + counter2 + '" style="float:right;color:red;background:white;">');   
+              newTextBoxDiv.appendTo("#TextBoxesMedsGroup");
+              counter2++;
+            });
+              
+            $("#getMedsButtonValue").click(function () {
+              var msg = '';
+              for(i=1; i<counter2; i++){
+                  msg += "\n Medicine #" + i + " : " + $('#meds' + i).val();
+              }
+                    alert(msg);
+            });
+          });
+
+          function removeDiv(x){
+            $("#TextBoxMedsDiv" + x).remove();
+          }
+
+          function saveData(){
+            var pid = $('#pid2').text();
+            var name = $('#name').text();
+            var docid = "DR. BANIBRATA CHAKRABORTY";
+            var medlist = "";
+            var medqnt = "";
+            var complaint = $('#complaint').val();
+            var diagnosis = $('#diagnosis').val();
+            for(var i=1;i<counter2;i++){
+              if (typeof($('#meds'+i).val()) != "undefined"){
+                medlist += $('#meds'+i).val() + ",";
+                medqnt += $('#quantitytextboxmeds'+i).val() + ",";
+              }
+            }
+            var testList = [];
+            for(var i=1;i<counter;i++){
+              testList.push($('#test'+i).val());
+            }
+            $.ajax({
+              type: "POST",
+                url: "/saveNewPrescription/",
+                data: {
+                'personid' : pid,
+                'docid' : docid,
+                'medlist' : medlist,
+                'medqnt' : medqnt,
+                'testList' : testList,
+                'complaint' : complaint,
+                'diagnosis' : diagnosis,
+                'name' : name,
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(data){
+                  console.log(data);
+                },
+                dataType: 'html'
+            });
+          }
+
+          var modal = document.getElementById('myModal');
+          var btn = document.getElementById("modalbtn");
+          var span = document.getElementsByClassName("close")[0];
+          btn.onclick = function() {
+            var name = $('#name').html();
+            var pid = $('#pid2').html();
+            $.ajax({
+              type:"GET",
+              url: "/getPatientPreviousRecord/",
+              data: {
+                'name' : name,
+                'pid' : pid,
+                'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val(),
+              },
+              dataType: 'html',
+              success: function(data){
+                console.log(data);
+              }
+            });
+            // modal.style.display = "block";
+          }
+          span.onclick = function() {
+            modal.style.display = "none";
+          }
+
+          // When the user clicks anywhere outside of the modal, close it
+          // window.onclick = function(event) {
+          //   if (event.target == modal) {
+          //     modal.style.display = "none";
+          //   }
+          // }
+          
+        </script>
+        
+        {% endblock %}      

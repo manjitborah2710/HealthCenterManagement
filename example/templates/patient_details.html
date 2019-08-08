@@ -1,0 +1,203 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<!-- saved from url=(0117)https://getmdl.io/templates/text-only/index.html?fbclid=IwAR3v37mPts4GW673S8WVC3-I-EAmUbjqb9SrllnCvff_x93i-alPQfUUvr0 -->
+<html lang="en" class="gr__getmdl_io mdl-js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Health Centre</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="https://getmdl.io/templates/text-only/images/android-desktop.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="https://getmdl.io/templates/text-only/images/ios-desktop.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link rel="shortcut icon" href="https://getmdl.io/templates/text-only/images/favicon.png">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.deep_purple-pink.min.css">
+    <link rel="stylesheet" href='{% static "css/main.css" %}' />
+    <!-- <style>
+    #view-source {
+      position: fixed;
+      display: block;
+      right: 0;
+      bottom: 0;
+      margin-right: 40px;
+      margin-bottom: 40px;
+      z-index: 900;
+    }
+    </style> -->
+    <style>
+      #role {
+        width:25%;
+        float: center;
+        height:25%;
+        /*margin-left: 35%;*/
+      }
+
+        p {
+            font-size: 22px;
+        }
+
+        p input {
+            font-size: 18px;
+        }
+        p select {
+            font-size: 18px;
+        }
+
+    </style>
+  </head>
+  <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base" data-gr-c-s-loaded="true">
+    <div class="mdl-layout__container has-scrolling-header"><div class="mdl-layout mdl-js-layout mdl-layout--fixed-header has-tabs is-upgraded" data-upgraded=",MaterialLayout">
+      <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        </div>
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+          <img src='{% static "images/nits_logo.png" %}' style="height: 160px" />
+          <h3 style="margin-left: 20px">HEALTH CENTER, NIT SILCHAR<br/>स्वास्थ्य केंद्र, एन.आई.टी. सिलचर</h3>
+        </div>
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        </div>
+        <!-- <div class="mdl-layout__tab-bar-container"><div class="mdl-layout__tab-bar-button mdl-layout__tab-bar-left-button"><i class="material-icons">chevron_left</i></div><div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark mdl-js-ripple-effect--ignore-events" data-upgraded=",MaterialRipple">
+          <a href="" class="mdl-layout__tab is-active">Doctors<span class="mdl-layout__tab-ripple-container mdl-js-ripple-effect" data-upgraded=",MaterialRipple"><span class="mdl-ripple"></span></span></a>
+          <a href="" class="mdl-layout__tab">Tests available<span class="mdl-layout__tab-ripple-container mdl-js-ripple-effect" data-upgraded=",MaterialRipple"><span class="mdl-ripple"></span></span></a>
+          <a href="" class="mdl-layout__tab">Medicine available<span class="mdl-layout__tab-ripple-container mdl-js-ripple-effect" data-upgraded=",MaterialRipple"><span class="mdl-ripple"></span></span></a>
+
+        </div><div class="mdl-layout__tab-bar-button mdl-layout__tab-bar-right-button"><i class="material-icons">chevron_right</i></div></div> -->
+      </header>
+      <main class="mdl-layout__content">
+        <div class="mdl-layout__tab-panel is-active" id="overview">
+
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+                <div class="mdl-card mdl-cell mdl-cell--12-col mdl-shadow--4dp mdl-color-text--grey-700">
+                    <div class="mdl-card__supporting-text">
+                      <h4><form action="#">
+        <div class="mdl-textfield">
+      
+            <input style="width: 90%;margin-left: 5px;font-size: 27px;margin-top:2%" type="text" placeholder="Search.." name="search">
+            
+             <button class="mdl-button mdl-js-button  mdl-js-ripple-effect mdl-button--fab mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add1" data-upgraded=",MaterialButton,MaterialRipple">
+                 <i class="material-icons">search</i></button>
+        </div>
+          <div class="mdl-textfield">
+          
+          <input type="radio" name="search" value="Student">Student
+          <input type="radio" name="search" value="Teacher">Teacher
+          <input type="radio" name="search" value="Staff">Staff
+          </div>
+      </form></h4>
+                      
+                      <!-- <div class="mdl-textfield mdl-js-textfield"><input class="mdl-textfield__input" type="text"><i class="material-icons" role="presentation">search</i></div> -->
+                    </div>
+                  
+                  </div>
+            <!-- <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn2" data-upgraded=",MaterialButton,MaterialRipple">
+              <i class="material-icons">more_vert</i>
+            <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button> -->
+            <div class="mdl-menu__container is-upgraded"><div class="mdl-menu__outline mdl-menu--bottom-right"></div><ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn2" data-upgraded=",MaterialMenu">
+              <li class="mdl-menu__item" tabindex="-1">Lorem</li>
+              <li class="mdl-menu__item" disabled="" tabindex="-1">Ipsum</li>
+              <li class="mdl-menu__item" tabindex="-1">Dolor</li>
+            </ul></div>
+          </section>
+
+          <section class="section--footer mdl-color--white mdl-grid">
+            <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+              <div class="section__circle-container__circle mdl-color--accent section__circle--big"></div>
+            </div>
+            <div class="section__text mdl-cell mdl-cell--4-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+              <h5>Lorem ipsum dolor sit amet</h5>
+              Qui sint ut et qui nisi cupidatat. Reprehenderit nostrud proident officia exercitation anim et pariatur ex.
+            </div>
+            <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+              <div class="section__circle-container__circle mdl-color--accent section__circle--big"></div>
+            </div>
+            <div class="section__text mdl-cell mdl-cell--4-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+              <h5>Lorem ipsum dolor sit amet</h5>
+              Qui sint ut et qui nisi cupidatat. Reprehenderit nostrud proident officia exercitation anim et pariatur ex.
+            </div>
+          </section>
+        </div>
+        <div class="mdl-layout__tab-panel" id="features">
+          <section class="section--center mdl-grid mdl-grid--no-spacing">
+
+          </section>
+        </div>
+        <footer class="mdl-mega-footer">
+          <div class="mdl-mega-footer--middle-section">
+            <div class="mdl-mega-footer--drop-down-section">
+              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked="">
+              <h1 class="mdl-mega-footer--heading">Features</h1>
+              <ul class="mdl-mega-footer--link-list">
+                <li><a href="https://getmdl.io/templates/text-only/index.html?fbclid=IwAR3v37mPts4GW673S8WVC3-I-EAmUbjqb9SrllnCvff_x93i-alPQfUUvr0#">About</a></li>
+                <li><a href="https://getmdl.io/templates/text-only/index.html?fbclid=IwAR3v37mPts4GW673S8WVC3-I-EAmUbjqb9SrllnCvff_x93i-alPQfUUvr0#">Terms</a></li>
+                <li><a href="https://getmdl.io/templates/text-only/index.html?fbclid=IwAR3v37mPts4GW673S8WVC3-I-EAmUbjqb9SrllnCvff_x93i-alPQfUUvr0#">Partners</a></li>
+                <li><a href="https://getmdl.io/templates/text-only/index.html?fbclid=IwAR3v37mPts4GW673S8WVC3-I-EAmUbjqb9SrllnCvff_x93i-alPQfUUvr0#">Updates</a></li>
+              </ul>
+            </div>
+            <div class="mdl-mega-footer--drop-down-section">
+              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked="">
+              <h1 class="mdl-mega-footer--heading">Details</h1>
+              <ul class="mdl-mega-footer--link-list">
+                <li><a href="https://getmdl.io/templates/text-only/index.html?fbclid=IwAR3v37mPts4GW673S8WVC3-I-EAmUbjqb9SrllnCvff_x93i-alPQfUUvr0#">Spec</a></li>
+                <li><a href="https://getmdl.io/templates/text-only/index.html?fbclid=IwAR3v37mPts4GW673S8WVC3-I-EAmUbjqb9SrllnCvff_x93i-alPQfUUvr0#">Tools</a></li>
+                <li><a href="https://getmdl.io/templates/text-only/index.html?fbclid=IwAR3v37mPts4GW673S8WVC3-I-EAmUbjqb9SrllnCvff_x93i-alPQfUUvr0#">Resources</a></li>
+              </ul>
+            </div>
+            <div class="mdl-mega-footer--drop-down-section">
+              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked="">
+              <h1 class="mdl-mega-footer--heading">Technology</h1>
+              <ul class="mdl-mega-footer--link-list">
+                <li><a href="https://getmdl.io/templates/text-only/index.html?fbclid=IwAR3v37mPts4GW673S8WVC3-I-EAmUbjqb9SrllnCvff_x93i-alPQfUUvr0#">How it works</a></li>
+                <li><a href="https://getmdl.io/templates/text-only/index.html?fbclid=IwAR3v37mPts4GW673S8WVC3-I-EAmUbjqb9SrllnCvff_x93i-alPQfUUvr0#">Patterns</a></li>
+                <li><a href="https://getmdl.io/templates/text-only/index.html?fbclid=IwAR3v37mPts4GW673S8WVC3-I-EAmUbjqb9SrllnCvff_x93i-alPQfUUvr0#">Usage</a></li>
+                <li><a href="https://getmdl.io/templates/text-only/index.html?fbclid=IwAR3v37mPts4GW673S8WVC3-I-EAmUbjqb9SrllnCvff_x93i-alPQfUUvr0#">Products</a></li>
+                <li><a href="https://getmdl.io/templates/text-only/index.html?fbclid=IwAR3v37mPts4GW673S8WVC3-I-EAmUbjqb9SrllnCvff_x93i-alPQfUUvr0#">Contracts</a></li>
+              </ul>
+            </div>
+            <div class="mdl-mega-footer--drop-down-section">
+              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked="">
+              <h1 class="mdl-mega-footer--heading">FAQ</h1>
+              <ul class="mdl-mega-footer--link-list">
+                <li><a href="https://getmdl.io/templates/text-only/index.html?fbclid=IwAR3v37mPts4GW673S8WVC3-I-EAmUbjqb9SrllnCvff_x93i-alPQfUUvr0#">Questions</a></li>
+                <li><a href="https://getmdl.io/templates/text-only/index.html?fbclid=IwAR3v37mPts4GW673S8WVC3-I-EAmUbjqb9SrllnCvff_x93i-alPQfUUvr0#">Answers</a></li>
+                <li><a href="https://getmdl.io/templates/text-only/index.html?fbclid=IwAR3v37mPts4GW673S8WVC3-I-EAmUbjqb9SrllnCvff_x93i-alPQfUUvr0#">Contact us</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="mdl-mega-footer--bottom-section">
+            <div class="mdl-logo">
+              More Information
+            </div>
+            <ul class="mdl-mega-footer--link-list">
+              <li><a href="https://developers.google.com/web/starter-kit/">Web Starter Kit</a></li>
+              <li><a href="https://getmdl.io/templates/text-only/index.html?fbclid=IwAR3v37mPts4GW673S8WVC3-I-EAmUbjqb9SrllnCvff_x93i-alPQfUUvr0#">Help</a></li>
+              <li><a href="https://getmdl.io/templates/text-only/index.html?fbclid=IwAR3v37mPts4GW673S8WVC3-I-EAmUbjqb9SrllnCvff_x93i-alPQfUUvr0#">Privacy and Terms</a></li>
+            </ul>
+          </div>
+        </footer>
+      </main>
+    </div></div>
+
+
+</body></html>

@@ -1,0 +1,115 @@
+{% load staticfiles %}
+
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>HEALTH CARE CENTRE, NIT SILCHAR</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link rel="shortcut icon" href="images/favicon.png">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-light_blue.min.css">
+    <link rel="stylesheet" href='{% static "css/main.css" %}' />
+  </head>
+
+
+  <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        </div>
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+          <img src='{% static "images/nits_logo.png" %}' style="height: 160px" />
+          <h3 style="margin-left: 20px">HEALTH CENTER, NIT SILCHAR<br/>स्वास्थ्य केंद्र, एन.आई.टी. सिलचर</h3>
+        </div>
+        <div id="date" style="align-self: flex-end;font-size: x-large; padding-right:10px;"></div>
+          <div id="time" style="align-self: flex-end;font-size: x-large; padding-right:10px;"></div><br>
+       
+        {% block header %}
+            <!-- The other pages will have only this region to work, rest will be same for all of them-->
+        {% endblock %}
+      </header>
+      <main class="mdl-layout__content">
+        {% block content %}
+            <!-- The other pages will have only this region to work, rest will be same for all of them-->
+        {% endblock %}
+      </main>
+        <footer class="mdl-mega-footer">
+          <div class="mdl-mega-footer--middle-section">
+            <div class="mdl-mega-footer--drop-down-section">
+              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+              <h1 class="mdl-mega-footer--heading">Ambulance</h1>
+              <ul class="mdl-mega-footer--link-list">
+                <li><a href="tel:+919678780007">VAN: 9678780007</a></li>
+                <li><a href="tel:+919678780002">Winger: 9678780002</a></li>
+              </ul>
+            </div>
+            <div class="mdl-mega-footer--drop-down-section">
+              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+              <h1 class="mdl-mega-footer--heading">Contact Us</h1>
+              <ul class="mdl-mega-footer--link-list">
+                <li><a href="mailto:healthcentre.nits@gmail.com">healthcentre.nits@gmail.com</a></li>
+              </ul>
+            </div>
+            <div class="mdl-mega-footer--drop-down-section">
+              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+              <h1 class="mdl-mega-footer--heading">Address</h1>
+              <ul class="mdl-mega-footer--link-list">
+                <li>NIT Silchar</li>
+                <li>Pin code-788010, Silchar</li>
+                <li>District-Cachar</li>
+                <li>Assam<li>
+              </ul>
+            </div>
+            <div class="mdl-mega-footer--drop-down-section">
+              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+              <h1 class="mdl-mega-footer--heading">Other Links</h1>
+              <ul class="mdl-mega-footer--link-list">
+                <li><a href="http://www.nits.ac.in/">NITS Website</a></li>
+                <li><a href="http://www.nits.ac.in/gymkhana/">GYMKHANA NITS</a></li>
+                <li><a href="mailto:sk2812283@gmail.com">Send feedback</a></li>
+              </ul>
+            </div>
+          </div>
+        </footer>
+    </div>
+    
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      var d = new Date();
+      var n = d.getDate();
+      var m = d.getMonth();
+      var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      var y = d.getFullYear();
+      $('#date').html(n +"-" + months[m] + "-" + y);
+      var t = d.toLocaleTimeString();
+      $('#time').html(t);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,179 @@
+{% extends 'layout.html' %}
+{% load staticfiles %}
+
+
+{% block header %}
+<div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark" style="float:right;">
+    <a href="#medicines_tab" class="mdl-layout__tab is-active">Patient Name</a>
+    {% if user.is_authenticated %}
+    <button onclick="location='http://192.168.44.240:8000/admin/'" class="mdl-button mdl-js-button  mdl-js-ripple-effect mdl-button--raised mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
+      <span>Dashboard</span>
+    </button>
+    {% else %}
+    <button onclick="location='http://192.168.44.240:8000/admin/doctor'" class="mdl-button mdl-js-button  mdl-js-ripple-effect mdl-button--raised mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
+      <span>Sign In</span>
+      </button>
+    {% endif %} 
+  </div>
+{% endblock %}
+
+{% block content %}
+
+
+<div class="mdl-layout__tab-panel is-active" id="medicines_tab">
+    <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+      {% if user.is_authenticated %}
+      <input type="hidden" id="patient" value="{{ user.get_username }}"> 
+        <div class="mdl-card mdl-cell mdl-cell--12-col mdl-color-text--grey-700">
+            <div class="mdl-card__supporting-text">
+              <h4>
+                <div class="mdl-textfield" onclick="enableReSearch()">
+    
+                    <input style="width: 90%;margin-left: 5px;font-size: 27px;margin-top:2%" id="txtSearch" type="text" placeholder="Search Record..." name="search">
+                  <ul id="search-results">
+    
+                  </ul>
+                   <button class="mdl-button mdl-js-button  mdl-js-ripple-effect mdl-button--fab mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add1" data-upgraded=",MaterialButton,MaterialRipple">
+                         <i class="material-icons">search</i></button>
+                </div>
+              </h4>
+              <div id="med_details" style="display:none">
+                  <ul class="demo-list-item mdl-list">
+                    <li class="mdl-list__item">
+                      <span class="mdl-list__item-primary-content">
+                        <b>Medicine Name:</b>
+                      </span>
+                      <span class="mdl-list__item-primary-content" id="med_name">
+                      </span>
+                    </li>
+                    <li class="mdl-list__item">
+                      <span class="mdl-list__item-primary-content">
+                        <b>Category:</b>
+                      </span>
+                      <span class="mdl-list__item-primary-content" id="med_category">
+                        
+                      </span>
+                    </li>
+                    <li class="mdl-list__item">
+                      <span class="mdl-list__item-primary-content">
+                        <b>Quantity:</b>
+                      </span>
+                      <span class="mdl-list__item-primary-content" id="med_quantity">
+                      </span>
+                    </li>
+                    <li class="mdl-list__item">
+                      <span class="mdl-list__item-primary-content">
+                        <b>Manufacturer:</b>
+                      </span>
+                      <span class="mdl-list__item-primary-content" id="med_manufacturer">
+                      </span>
+                    </li>
+                  </ul>
+              </div>
+            </div>
+          </div>
+          <hr>
+      <div class="mdl-card mdl-cell mdl-cell--12-col">
+        <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+          <h4 class="mdl-cell mdl-cell--12-col">Previous Records</h4>
+          
+          <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+              <img style="height:80px;width:80px;padding-left: 20px;" src='{% static "images/med_logo.png" %}'/>
+          </div>
+          
+          <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+            <h5>DATE : </h5> 
+            <p>DOCTOR : <br>
+              COMPLAINT : <br>
+              DIAGNOSIS : <br>
+              MEDICINES : <br>
+              FOLLOW-UP DATE : <br>
+              TESTS RESULTS : <br>
+            </p>
+          </div>
+  
+          <!-- <div class="pagination" style="padding-left:220px">
+              <br>
+              <br>
+                  {% if medicines.has_previous %}
+                  <button class="step-links">
+                      <a href="?page=1">&laquo; first</a>
+              </button>
+              <button>
+                      <a href="?page={{ medicines.previous_page_number }}">previous</a>
+                  {% endif %}
+              </button>
+                  <span class="current">
+                      <b>Page {{ medicines.number }} of {{ medicines.paginator.num_pages }}. </b>
+                  </span>
+              
+                  {% if medicines.has_next %}
+                  <button>
+                      <a href="?page={{ medicines.next_page_number }}">next</a>
+                    </button>
+                    <button>
+                      <a href="?page={{ medicines.paginator.num_pages }}">last &raquo;</a>
+                  {% endif %}
+              </button>
+          </div> -->
+      </div>
+    </section>
+    <section class="mdl-grid">
+    </section>
+  </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+      <script>
+      function enableReSearch(){
+        $('#search-results').show();
+      }
+
+        $('#txtSearch').keyup(function(e) {
+        console.log($('#txtSearch').val());
+          $.ajax({
+            type: "GET",
+            url: "/getMedicineList/",
+            data: {
+            'search_text' : $('#txtSearch').val(),
+            'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
+            },
+            success: searchSuccess,
+            dataType: 'html'
+          });
+        });
+
+      function searchSuccess(data, textStatus, jqXHR)
+      {
+        $('#search-results').html(data);
+        console.log(data);
+      }
+      function getMedDetail(mid){
+      console.log(mid);
+      $.ajax({
+            type: "GET",
+            url: "/getMedDetail/",
+            data: {
+            'mid' : mid,
+            'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
+            },
+            dataType: 'json',
+            // contentType: false,
+            success: function(data){
+              console.log(data);
+              $('#search-results').hide();
+              $('#med_name').html(data.med_details.medicine_name);
+              $('#med_category').html(data.med_details.category);
+              $('#med_quantity').html(data.med_details.quantity);
+              $('#med_manufacturer').html(data.med_details.manufacturing_company);
+              $('#med_details').show();
+            }
+        });
+      }
+
+      $(document).ready(function(){
+        var pid = 9;
+      });
+      </script>
+{% endblock %}
